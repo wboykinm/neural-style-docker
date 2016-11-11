@@ -13,3 +13,6 @@ sudo dpkg -i /tmp/nvidia-docker*.deb && rm /tmp/nvidia-docker*.deb
 # Tests install
 sudo nvidia-docker run --rm nvidia/cuda nvidia-smi
 
+# Other deps
+sudo apt-get install parallel htop -y
+
