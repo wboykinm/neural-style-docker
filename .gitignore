@@ -1,5 +1,5 @@
 **/__pycache__/
-.DS_Store
-contents/.DS_Store
-*.DS-Store
+*.DS_Store
 *node_modules/
+*tmptiles/
+*tiles.txt
