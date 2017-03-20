@@ -2,3 +2,4 @@
 .DS_Store
 contents/.DS_Store
 *.DS-Store
+*node_modules/
