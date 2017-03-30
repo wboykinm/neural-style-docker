@@ -1,19 +1,9 @@
-# neural-style-docker
+# Neural Style for Docker
+_Satellite imagery edition!_
 
-![Stylized Docker](./doc/docker_afremov_sw5000_ss1.png)
-![Stylized Docker](./doc/docker_broca_sw5000_ss1.png)
-![Stylized Docker](./doc/docker_brownrays_sw375_ss1.png)
-![Stylized Docker](./doc/docker_ediaonise_sw1500_ss1.png)
-![Stylized Docker](./doc/docker_edimburgGraffit_sw20000.0_ss1.png)
-![Stylized Docker](./doc/docker_himesama_sw10000_ss1.png)
-![Stylized Docker](./doc/docker_paisaje_urbano-hundertwasser_sw2000_ss1.png)
-![Stylized Docker](./doc/docker_potatoes_sw375_ss1.png)
-![Stylized Docker](./doc/docker_RenoirDogesPalaceVenice_sw1500_ss1.png)
-![Stylized Docker](./doc/docker_revellerAndCourtesan_sw2000_ss1.png)
-![Stylized Docker](./doc/docker_seated-nude_sw375_ss1.png)
-![Stylized Docker](./doc/docker_starryNight_sw1500_ss1.png)
+![Stylized]()
 
-A dockerized version of the [neural style algorithm by jcjohnson](https://github.com/jcjohnson/neural-style). [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) is used to make use of GPU hardware.
+A dockerized (by [Álvaro Barbero Jiménez](https://github.com/albarji/neural-style-docker)) version of the [neural style algorithm by jcjohnson](https://github.com/jcjohnson/neural-style). [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) is optimized for GPU hardware.
 
 ## Install
 
@@ -27,25 +17,40 @@ A dockerized version of the [neural style algorithm by jcjohnson](https://github
 
 You can either pull the Docker image from Docker Hub with
 
-	docker pull albarji/neural-style
+	`docker pull wboykinm/neural-style`
 
 or build the image locally with
 
-	make
+	`make`
 
 ## Simple use
 
 Just run
 
-	bash scripts/fake-it.sh
+	`bash scripts/fake-it.sh <params>`
 
 This applies a blend of content and style with some default parameters. Both content and style images must be present in the "contents" and "styles" folders, respectively.
 
-Example: to draw the Golden Gate bridge the style of Van Gogh's Starry Night, type
+Example: to draw the downtown Sydney in the style of Picabia's "Ecclesiastical", run
 
-	bash scripts/fake-it.sh goldengate.jpg vangogh.jpg
+	`bash scripts/fake-it.sh digitalglobe/_0003_AUS_Sydney_Jan06_2015_WV3_30cm.jpg picabia_ecclesiastical.jpg`
 
 ## Advanced use
+
+### Processing tiled maps
+
+Pull satellite imagery tiles from the Mapbox API for a given bbox and zoom level:
+`bash get_tiles.sh <bbox geojson> <z>`
+
+e.g.
+`bash get_tiles.sh vergennes.geojson 11`
+
+Then loop through the results:
+```
+for i in $(ls scripts/tiles/tmptiles/); do
+  bash scripts/style-tiles.sh $i picabia_ecclesiastical.jpg 512
+done
+```
 
 ### Generating variants
 
