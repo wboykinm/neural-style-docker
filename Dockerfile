@@ -1,5 +1,5 @@
 FROM kaixhin/cuda-torch
-MAINTAINER "Álvaro Barbero Jiménez, https://github.com/albarji"
+MAINTAINER "Bill Morris, https://github.com/wboykinm"
 
 # Install system dependencies
 RUN set -ex && \
@@ -7,7 +7,20 @@ RUN set -ex && \
 	libprotobuf-dev \
 	protobuf-compiler \
 	wget \
+	build-essential \
+	checkinstall \
+	libssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
+	
+# Install geo/tile dependencies
+RUN sudo apt install python-pip
+RUN pip install mercantile
+RUN	curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+RUN nvm install 6
+RUN nvm use 6
+RUN nvm alias default node
+WORKDIR "/neural-style-docker/scripts/tiles"
+RUN npm install
 
 # Install loadcaffe and other torch dependencies
 RUN luarocks install loadcaffe
