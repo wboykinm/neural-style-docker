@@ -1,12 +1,12 @@
 # Get a whole batch of image tiles:
-# USAGE bash get_tiles.sh <geojson filename>
+# USAGE bash get_tiles.sh <geojson filename> <zoom level>
 GEO_FILE=$1
-TILE_ZOOM=11
+TILE_ZOOM=$2
 TILE_URL_BASE='https://a.tiles.mapbox.com/v4/landplanner.l26ddlb9/'
 TILE_URL_SUFFIX='@2x.png?access_token='
 MB_TOKEN='pk.eyJ1IjoibGFuZHBsYW5uZXIiLCJhIjoicUtlZGgwYyJ9.UFYz8MD4lI4kIzk9bjGFvg'
 # get expanded bbox from tracts_$COUNTY_FIPS.geojson
-BBOX=$(node bbox.js tmp.geojson)
+BBOX=$(node bbox.js $GEO_FILE)
 # pipe it through a tile cruncher
 echo $BBOX | mercantile tiles $TILE_ZOOM > tiles.txt
 rm -rf tmptiles
