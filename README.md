@@ -1,7 +1,8 @@
 # Neural Style for Docker
-_Satellite imagery edition!_
+__Satellite imagery edition!__
 
-![Stylized]()
+![Stylized Eixample](doc/barca1-0-1_by_picabia_ecclesiastical_1080px_2016_11_22_400.png)
+_Barcelona's Eixample district in the style of Francis Picabia's "Ecclesiastical"_
 
 A dockerized (by [Álvaro Barbero Jiménez](https://github.com/albarji/neural-style-docker)) version of the [neural style algorithm by jcjohnson](https://github.com/jcjohnson/neural-style). [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) is optimized for GPU hardware.
 
@@ -22,6 +23,23 @@ You can either pull the Docker image from Docker Hub with
 or build the image locally with
 
 	`make`
+	
+or spin up an EC2 (warning; these GPU instances can get expensive)
+
+```
+# create:
+docker-machine create \
+	--driver amazonec2 \
+	--amazonec2-instance-type p2.xlarge \
+	--amazonec2-access-key $AWS_ACCESS_KEY \
+	--amazonec2-secret-key $AWS_SECRET_KEY \
+	--amazonec2-subnet-id $AWS_SUBNET_ID \
+	--amazonec2-vpc-id $AWS_VPC_ID \
+	nvidia-mapper # name your machine
+
+# . . . and connect:
+docker-machine ssh nvidia-mapper
+```
 
 ## Simple use
 
