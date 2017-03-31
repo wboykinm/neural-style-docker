@@ -11,6 +11,9 @@ RUN set -ex && \
 	checkinstall \
 	libssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR "/neural-style-docker/scripts"
+RUN bash install-nvidia.sh
 	
 # Install geo/tile dependencies
 RUN sudo apt install python-pip
