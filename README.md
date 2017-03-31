@@ -37,8 +37,15 @@ docker-machine create \
 	--amazonec2-vpc-id $AWS_VPC_ID \
 	nvidia-mapper # name your machine
 
+# build the environment from the local container config:
+eval $(docker-machine env nvidia-docker)
+docker build -t wboykinm/neural-style .
+
 # . . . and connect:
 docker-machine ssh nvidia-mapper
+
+# don't forget to spin it down when finished
+docker-machine rm nvidia-docker
 ```
 
 ## Simple use

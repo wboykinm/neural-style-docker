@@ -7,10 +7,13 @@ RUN set -ex && \
 	libprotobuf-dev \
 	protobuf-compiler \
 	wget \
+	git \
 	build-essential \
 	checkinstall \
 	libssl-dev \
 	&& rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/wboykinm/neural-style-docker.git
 
 WORKDIR "/neural-style-docker/scripts"
 RUN bash install-nvidia.sh
