@@ -1,5 +1,5 @@
 .PHONY: build clean
-IMGNAME=wboykinm/neural-style
+IMGNAME=albarji/neural-style
 IMGTAG=latest
 
 build:

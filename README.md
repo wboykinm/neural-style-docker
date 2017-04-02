@@ -18,7 +18,7 @@ A dockerized (by [Álvaro Barbero Jiménez](https://github.com/albarji/neural-st
 
 You can either pull the Docker image from Docker Hub with
 
-`docker pull wboykinm/neural-style`
+`docker pull albarji/neural-style`
 
 or build the image locally with
 
@@ -39,7 +39,7 @@ docker-machine create \
 
 # build the environment from the local container config:
 eval $(docker-machine env nvidia-docker)
-docker build -t wboykinm/neural-style .
+docker build -t albarji/neural-style .
 
 # . . . and connect:
 docker-machine ssh nvidia-mapper
@@ -91,13 +91,13 @@ For example, to generate different variants of Docker logo + Starry Night:
 
 You can directly invoke the core neural-style algorithm by simply running a container of this image, for example:
 
-`nvidia-docker run --rm wboykinm/neural-style -h`
+`nvidia-docker run --rm albarji/neural-style -h`
 
 produces the usage help.
 
 To apply the neural-style method on some host images, map the host folder with such images to the container /images folder through a volume such as
 
-`nvidia-docker run --rm -v $(pwd):/images wboykinm/neural-style -backend cudnn -cudnn_autotune -content_image content.png -style_image style.png`
+`nvidia-docker run --rm -v $(pwd):/images albarji/neural-style -backend cudnn -cudnn_autotune -content_image content.png -style_image style.png`
 
 The container uses as work directory the /images folder, so the results will be readily available at the mounted host folder.
 
@@ -105,6 +105,6 @@ In order to take full advantage of the cudnn libraries (also included in the ima
 
 As an example, let's redraw Docker's logo in the famous style of Van Gogh's Starry Night:
 
-`nvidia-docker run --rm -v $(pwd):/images wboykinm/neural-style -backend cudnn -cudnn_autotune -content_image contents/docker.png -style_image styles/vangogh.jpg`
+`nvidia-docker run --rm -v $(pwd):/images albarji/neural-style -backend cudnn -cudnn_autotune -content_image contents/docker.png -style_image styles/vangogh.jpg`
 
 

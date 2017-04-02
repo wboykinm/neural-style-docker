@@ -23,7 +23,7 @@ else SU="sudo"; fi
 
 output_name="output/${1%.*}_by_${2%.*}_${3}px_$DATE.png"
 time $SU nvidia-docker run --rm \
-  -v $(pwd):/images wboykinm/neural-style \
+  -v $(pwd):/images albarji/neural-style \
   -backend cudnn \
   -cudnn_autotune \
   -normalize_gradients \
