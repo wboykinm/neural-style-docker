@@ -51,11 +51,6 @@ applying the *vangogh.png* style to the *docker.png* image amounts to
 You can provide several content and style images, in which case all cross-combinations will be generated.
 
     nvidia-docker run --rm -v $(pwd):/images albarji/neural-style --content contents/docker.png contents/whatever.jpg --style styles/vangogh.png styles/picasso.png
-		
-To draw the downtown Sydney in the style of Picabia's "Ecclesiastical", run
-
-    bash scripts/fake-it.sh digitalglobe/_0003_AUS_Sydney_Jan06_2015_WV3_30cm.jpg picabia_ecclesiastical.jpg
-
 
 ### Fine tuning the results
 
