@@ -52,9 +52,9 @@ You can provide several content and style images, in which case all cross-combin
 
     nvidia-docker run --rm -v $(pwd):/images albarji/neural-style --content contents/docker.png contents/whatever.jpg --style styles/vangogh.png styles/picasso.png
 		
-Example: to draw the downtown Sydney in the style of Picabia's "Ecclesiastical", run
+To draw the downtown Sydney in the style of Picabia's "Ecclesiastical", run
 
-		`bash scripts/fake-it.sh digitalglobe/_0003_AUS_Sydney_Jan06_2015_WV3_30cm.jpg picabia_ecclesiastical.jpg`
+    bash scripts/fake-it.sh digitalglobe/_0003_AUS_Sydney_Jan06_2015_WV3_30cm.jpg picabia_ecclesiastical.jpg
 
 
 ### Fine tuning the results
