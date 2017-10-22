@@ -4,3 +4,6 @@
 *tmptiles/
 *tiles.txt
 output/
+*.pyc
+.idea
+.coverage
