@@ -6,8 +6,9 @@ from neuralstyle.utils import filename
 
 def convert(origin, dest):
     """Transforms the format of an image in a file, by creating a new file with the new format"""
-    command = "convert " + origin + " " + dest
-    run(command, shell=True)
+    if ismultilayer(origin):
+        raise ValueError("Cannot operate with multilayer images")
+    run("convert %s %s" % (origin, dest), shell=True)
 
 
 def shape(imfile):
@@ -80,6 +81,8 @@ def composite(imfiles, outname):
 
 def extractalpha(imfile, rgbfile, alphafile):
     """Decomposes an image file into the RGB channels and the alpha channel, saving both as separate image files"""
+    if ismultilayer(imfile):
+        raise ValueError("Cannot operate with multilayer images")
     # Alpha channel extraction
     command = "convert -alpha extract %s %s" % (imfile, alphafile)
     run(command, shell=True, check=True)
@@ -109,3 +112,8 @@ def equalimages(imfile1, imfile2):
     if result.returncode == 2:
         raise IOError("Error while calling imagemagick compare method")
     return result.returncode == 0
+
+
+def ismultilayer(imfile):
+    """Returns whether an image file contains multiple layers"""
+    return len(shape(imfile)) > 2
